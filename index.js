@@ -100,7 +100,7 @@ const authenticateToken = (request, response, next) => {
   }
 };
 
-app.post("/create-task/",authenticateToken,async(request,response)=>{
+app.post("/create-task/",authenticateToken, async(request,response)=>{
     let{username}=request;
     const addTask=request.body
     const {task,priority,status,assignedUser}=addTask
@@ -115,7 +115,7 @@ app.post("/create-task/",authenticateToken,async(request,response)=>{
     response.send({ taskId: taskId }); 
 })
 
-app.put("/task/:taskId/",authenticateToken async (request, response) => {
+app.put("/task/:taskId/",authenticateToken, async (request, response) => {
   let{username}=request
   const { taskId } = request.params;
   const taskDetails = request.body;
@@ -136,7 +136,7 @@ app.put("/task/:taskId/",authenticateToken async (request, response) => {
   response.send("Task Updated Successfully");
 });
 
-app.get("/todo-tasks/", async (request, response) => {
+app.get("/todo-tasks/",authenticateToken, async (request, response) => {
   const { priority,status,assignedUser } = request.params;
   const getTaskQuery = `
     SELECT
@@ -148,7 +148,7 @@ app.get("/todo-tasks/", async (request, response) => {
   const task = await db.all(getTaskQuery);
   response.send(task);
 });
-app.get("/todo-tasks/", async (request, response) => {
+app.get("/todo-tasks/",authenticateToken, async  (request, response) => {
   const { priority,status,assignedUser } = request.params;
   const getTaskQuery = `
     SELECT
@@ -160,7 +160,7 @@ app.get("/todo-tasks/", async (request, response) => {
   const task = await db.all(getTaskQuery);
   response.send(task);
 });
-app.get("/todo-tasks/", async (request, response) => {
+app.get("/todo-tasks/",authenticateToken, async (request, response) => {
   const { priority,status,assignedUser } = request.params;
   const getTaskQuery = `
     SELECT
@@ -172,7 +172,7 @@ app.get("/todo-tasks/", async (request, response) => {
   const task = await db.all(getTaskQuery);
   response.send(task);
 });
-app.get("/todo-tasks/", async (request, response) => {
+app.get("/todo-tasks/",authenticateToken, async (request, response) => {
   const { priority,status,assignedUser } = request.params;
   const getTaskQuery = `
     SELECT
@@ -184,7 +184,7 @@ app.get("/todo-tasks/", async (request, response) => {
   const task = await db.all(getTaskQuery);
   response.send(task);
 });
-app.get("/todo-tasks/", async (request, response) => {
+app.get("/todo-tasks/",authenticateToken, async (request, response) => {
   const { priority,status,assignedUser } = request.params;
   const getTaskQuery = `
     SELECT
@@ -196,7 +196,7 @@ app.get("/todo-tasks/", async (request, response) => {
   const task = await db.all(getTaskQuery);
   response.send(task);
 });
-app.get("/todo-tasks/", async (request, response) => {
+app.get("/todo-tasks/",authenticateToken, async (request, response) => {
   const { priority,status,assignedUser } = request.params;
   const getTaskQuery = `
     SELECT
@@ -209,7 +209,7 @@ app.get("/todo-tasks/", async (request, response) => {
   response.send(task);
 });
 
-app.delete("/deleteTodo/:TaskId/", async (request, response) => {
+app.delete("/deleteTodo/:TaskId/",authenticateToken, async (request, response) => {
   const { taskId } = request.params;
   const deleteTaskQuery = `
     DELETE FROM
